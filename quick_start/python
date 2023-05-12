@@ -1,0 +1,50 @@
+import openai
+
+class MyChatbot:
+    def __init__(self, chatbot_config):
+        self.chatbot_config = chatbot_config
+        self.listeners = {}
+
+    def on(self, event_name, callback):
+        self.listeners[event_name] = callback
+
+    def emit(self, event_name, message):
+        if event_name in self.listeners:
+            self.listeners[event_name](message)
+
+    def handle_message(self, message):
+        # Traiter le message de l'utilisateur et envoyer une réponse
+        # (Les détails d'implémentation dépendent de votre interface de chat)
+        pass
+
+chatbot_config = {
+    "SecuritySettings": {
+        "RestrictedNames": None,
+        "RestrictedWords": None,
+        "RestrictedResponses": None,
+        "MaxMessageLength": None,
+        "LinkProfanityFilter": False
+    }
+    # autres configurations...
+}
+
+chatbot = MyChatbot(chatbot_config)
+
+def send_response(response):
+    # Envoyer la réponse à l'utilisateur
+    # (Les détails d'implémentation dépendent de votre interface de chat)
+    print(response)
+
+# Commencer à écouter les messages de l'utilisateur
+chatbot.on('message', send_response)
+
+# Exemple d'utilisation
+message = "Bonjour, comment ça va ?"
+chatbot.emit('message', message)
+print
+6 test_context = {
+     67     "SecuritySettings": {
+     68         "RestrictedNames": ["John"],
+   (...)
+     74     # autres configurations...
+     75 }
